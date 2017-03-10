@@ -5,7 +5,7 @@ const passport = require('passport');
 const passportLocalStrategy = require('passport-local').Strategy;
 const session = require('express-session');
 const sessionMiddleware = require('./middlewares/session.middleware');
-
+const graphql = require('graphql');
 
 require('dotenv').config();
 
