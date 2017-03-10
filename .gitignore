@@ -1,6 +1,9 @@
 # Logs
+.env
 logs
 *.log
+db
+.vscode
 npm-debug.log*
 
 # Runtime data
@@ -35,3 +38,4 @@ jspm_packages
 
 # Optional REPL history
 .node_repl_history
+.next

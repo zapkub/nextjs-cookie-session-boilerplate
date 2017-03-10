@@ -1,0 +1,13 @@
+db:
+    image: mongo:3.0.8
+    volumes_from:
+        - mongo-data
+    ports:
+        - "27017:27017"
+    command: "--smallfiles --logpath=/dev/null --setParameter failIndexKeyTooLong=false"
+    
+mongo-data:
+    image: mongo:3.0.8
+    volumes: 
+        - ./db/:/data/db
+    command: "--break-mongo" # break mongod cmd from running and use this container as data container
