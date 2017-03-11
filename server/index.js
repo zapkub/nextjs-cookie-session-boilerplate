@@ -5,7 +5,6 @@ const passport = require('passport');
 const passportLocalStrategy = require('passport-local').Strategy;
 const session = require('express-session');
 const sessionMiddleware = require('./middlewares/session.middleware');
-const graphql = require('graphql');
 
 require('dotenv').config();
 
@@ -33,6 +32,7 @@ module.exports = function (context) {
 
 
   app.use('/auth', require('./routes/authentication.routes'));
+  app.use(require('./routes/graphql.routes'));
 
   app.get('/handshake', (req, res) => {
     console.log(req.user);

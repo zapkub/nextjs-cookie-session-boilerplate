@@ -11,7 +11,7 @@
         "seed": "",
         "build": "",
         "dev": "nodemon -w ./server ./entry.js",
-        "test": "jest"
+        "test": "jest || true"
     },
     "author": "Rungsikorn Rungsikavarnich <rungsikorn@me.com>",
     "license": "MIT",
@@ -19,13 +19,18 @@
         "apollo-client": "^1.0.0-rc.2",
         "bcrypt-nodejs": "^0.0.3",
         "body-parser": "^1.17.1",
+        "chai": "^3.5.0",
         "cookie-parser": "^1.4.3",
         "dotenv": "^4.0.0",
         "express": "^4.15.2",
+        "express-graphql": "^0.6.3",
         "express-session": "^1.15.1",
         "graphql": "^0.9.1",
         "graphql-compose": "^1.14.2",
+        "graphql-compose-connection": "^2.1.3",
         "graphql-compose-mongoose": "^1.4.8",
+        "graphql-server-express": "^0.6.0",
+        "graphql-tools": "^0.10.1",
         "lodash": "^4.17.4",
         "material-ui": "^0.17.0",
         "mongoose": "^4.8.6",
@@ -39,16 +44,19 @@
         "recompose": "^0.22.0"
     },
     "devDependencies": {
-        "jest": "^19.0.2",
-        "eslint": "latest",
         "babel-eslint": "^7.1.1",
+        "eslint": "latest",
         "eslint-config-airbnb": "^14.1.0",
         "eslint-plugin-flow-vars": "^0.5.0",
         "eslint-plugin-flowtype": "2.30.0",
         "eslint-plugin-import": "^2.2.0",
         "eslint-plugin-jsx-a11y": "^4.0.0",
         "eslint-plugin-react": "^6.10.0",
+        "jest": "^19.0.2",
         "nodemon": "^1.11.0",
         "supertest": "^3.0.0"
+    },
+    "jest": {
+        "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(js)$"
     }
 }

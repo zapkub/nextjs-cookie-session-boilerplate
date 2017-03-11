@@ -65,6 +65,7 @@
         "class-methods-use-this": "off",
         "no-underscore-dangle": "off",
         "react/no-multi-comp": "off",
+        "no-unused-expressions": "off",
         "react/require-default-props": "off",
         "import/prefer-default-export": "off",
         "flow-vars/define-flow-type": 1,

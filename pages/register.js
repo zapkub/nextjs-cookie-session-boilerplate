@@ -1,14 +1,15 @@
 import { compose, withProps, withState } from 'recompose';
 import TextField from 'material-ui/TextField';
 import React from 'react';
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
 
 import withApp from '../lib/withApp';
 import withAPI from '../lib/withAPI';
 
 
-const RegisterPage = ({ setEmail, setPassword, email, password, doRegister, startRegister }) => (
+const RegisterPage = ({ doRegister, setEmail, setPassword, email, password, startRegister }) => (
   <div>
-    {console.log(startRegister)}
     <form
       className="container" onSubmit={(e) => {
         e.preventDefault();
@@ -46,9 +47,34 @@ const RegisterPage = ({ setEmail, setPassword, email, password, doRegister, star
   </div>
 );
 
+
+const mutation = gql`
+  mutation ($email:String!, $password: String!) {
+    createUser(record:{email: $email, password: $password}) {
+      recordId
+    }
+  }
+`;
+
+
 export default compose(
     withApp({}),
     withState('email', 'setEmail', ''),
     withState('password', 'setPassword', ''),
-    withAPI(),
+    graphql(mutation, {
+      props: ({ mutate, props }) => ({
+        doRegister: async () => {
+          console.log('do mutate');
+          const result = await mutate();
+          console.log(result);
+        },
+      }),
+      options: ({ email, password }) => ({
+        variables: {
+          email,
+          password,
+        },
+      }),
+    }),
+    // withAPI(),
 )(RegisterPage);
