@@ -33,4 +33,3 @@ exports.serializeSession = context => (user, done) => {
   console.log('Serialize session');
   done(null, user._id);
 };
-
