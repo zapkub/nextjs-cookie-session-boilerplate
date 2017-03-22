@@ -1,25 +1,24 @@
 const router = require('express').Router();
 const passport = require('passport');
+const User = require('../models/User.model');
+const validator = require("email-validator");
 
 router.post('/user/login', passport.authenticate('local'), (req, res) => {
   if (!req.user) {
     res.status(401).end();
   } else {
-    res.json({ msg: 'Login successful.' });
-    res.status(200).end();
+    res.json({ msg: 'Login successful.' }).status(200).end();
   }
 });
 
 router.route('/user/logout')
 .get(function (req, res) {
   req.logout();
-  res.json({ msg: 'Logout successful.' });
-  res.status(200).end();
+  res.json({ msg: 'Logout successful.' }).status(200).end();
 })
 .post(function (req, res) {
   req.logout();
-  res.json({ msg: 'Logout successful.' });
-  res.status(200).end();
+  res.json({ msg: 'Logout successful.' }).status(200).end();
 })
 
 router.route('/user')
@@ -29,26 +28,59 @@ router.route('/user')
     }
     else {
       delete req.user.password;
-      res.json(req.user);
-      res.status(200).end();
+      res.json(req.user).status(200).end();
     }
   })
-  .post(function (req, res) {
-    res.send('Create user ( No session needed )')
+  .post(async function (req, res) {
+    if(!req.body.email || !req.body.password || !req.body.confirmpassword) {
+      res.status(400).json({ error: 'Invalid parameter.' }).end();
+    }
+
+    // validate email
+    if(validator.validate(req.body.email) === false) {
+      res.status(400).json({ error: 'Invalid Email.' }).end();
+    }
+
+    // password must contain at least 6 charactor
+    if(req.body.password.length < 6){
+      res.status(400).json({ error: 'Password must contain at least 6 charactor.' }).end();
+    }
+
+    // Password does not match confirm password.
+    if(req.body.password != req.body.confirmpassword){
+      res.status(400).json({ error: 'Password does not match confirm password.' }).end();
+    }
+
+    let firstName = req.body.firstName ? req.body.firstName : "";
+    let lastName =  req.body.lastName ? req.body.lastName : "";
+    let data_user = {
+      email: req.body.email,
+      password: req.body.password,
+      firstName,
+      lastName
+    }
+
+    try {
+        const user = new req.context.User();
+        const result = await user.createUser(data_user);
+        res.status(201).json({ msg: 'create user successful.' }).end();
+    } catch (e) {
+        res.status(400).json({ error: 'Email is already been used'}).end();
+    }
   })
   .put(function (req, res) {
     res.send('Update user info by session info')
   })
   .delete(function (req, res) {
-    const user = new req.context.User();
     if (!req.user) {
       res.status(401).end();
-    } else {
-      user.findOneAndRemove({_id: req.user.id}, function (err, todo) {
-        console.log("delete successful.")
+    }
+    else {
+      User.model.remove({email: req.user.email}, async function(err, userResult) {
+        await res.json({ msg: 'Delete user successful.' });
+        res.status(200).end();
       });
     }
-    res.send('remove user by session info')
   });
 
 module.exports = router;

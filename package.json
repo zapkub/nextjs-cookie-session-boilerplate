@@ -1,54 +1,55 @@
 {
-    "name": "stock-react-node",
-    "version": "1.0.0",
-    "main": "index.js",
-    "repository": {
-        "url": "git@github.com:zapkub/stock-react-node.git",
-        "type": "git"
-    },
-    "scripts": {
-        "start": "",
-        "seed": "",
-        "build": "",
-        "dev": "nodemon -w ./server ./entry.js",
-        "test": "jest"
-    },
-    "author": "Rungsikorn Rungsikavarnich <rungsikorn@me.com>",
-    "license": "MIT",
-    "dependencies": {
-        "apollo-client": "^1.0.0-rc.2",
-        "bcrypt-nodejs": "^0.0.3",
-        "body-parser": "^1.17.1",
-        "cookie-parser": "^1.4.3",
-        "dotenv": "^4.0.0",
-        "express": "^4.15.2",
-        "express-session": "^1.15.1",
-        "graphql": "^0.9.1",
-        "graphql-compose": "^1.14.2",
-        "graphql-compose-mongoose": "^1.4.8",
-        "lodash": "^4.17.4",
-        "material-ui": "^0.17.0",
-        "mongoose": "^4.8.6",
-        "next": "2.0.0-beta.36",
-        "passport": "^0.3.2",
-        "passport-local": "^1.0.0",
-        "react": "^15.4.2",
-        "react-apollo": "^1.0.0-rc.2",
-        "react-dom": "^15.4.2",
-        "react-tap-event-plugin": "^2.0.1",
-        "recompose": "^0.22.0"
-    },
-    "devDependencies": {
-        "jest": "^19.0.2",
-        "eslint": "latest",
-        "babel-eslint": "^7.1.1",
-        "eslint-config-airbnb": "^14.1.0",
-        "eslint-plugin-flow-vars": "^0.5.0",
-        "eslint-plugin-flowtype": "2.30.0",
-        "eslint-plugin-import": "^2.2.0",
-        "eslint-plugin-jsx-a11y": "^4.0.0",
-        "eslint-plugin-react": "^6.10.0",
-        "nodemon": "^1.11.0",
-        "supertest": "^3.0.0"
-    }
+  "name": "stock-react-node",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": {
+    "url": "git@github.com:zapkub/stock-react-node.git",
+    "type": "git"
+  },
+  "scripts": {
+    "start": "",
+    "seed": "",
+    "build": "",
+    "dev": "nodemon -w ./server ./entry.js",
+    "test": "jest"
+  },
+  "author": "Rungsikorn Rungsikavarnich <rungsikorn@me.com>",
+  "license": "MIT",
+  "dependencies": {
+    "apollo-client": "^1.0.0-rc.2",
+    "bcrypt-nodejs": "^0.0.3",
+    "body-parser": "^1.17.1",
+    "cookie-parser": "^1.4.3",
+    "dotenv": "^4.0.0",
+    "email-validator": "^1.0.7",
+    "express": "^4.15.2",
+    "express-session": "^1.15.1",
+    "graphql": "^0.9.1",
+    "graphql-compose": "^1.14.2",
+    "graphql-compose-mongoose": "^1.4.8",
+    "lodash": "^4.17.4",
+    "material-ui": "^0.17.0",
+    "mongoose": "^4.8.6",
+    "next": "2.0.0-beta.36",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "react": "^15.4.2",
+    "react-apollo": "^1.0.0-rc.2",
+    "react-dom": "^15.4.2",
+    "react-tap-event-plugin": "^2.0.1",
+    "recompose": "^0.22.0"
+  },
+  "devDependencies": {
+    "jest": "^19.0.2",
+    "eslint": "latest",
+    "babel-eslint": "^7.1.1",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-flow-vars": "^0.5.0",
+    "eslint-plugin-flowtype": "2.30.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.10.0",
+    "nodemon": "^1.11.0",
+    "supertest": "^3.0.0"
+  }
 }
