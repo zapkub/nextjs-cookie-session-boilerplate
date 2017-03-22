@@ -33,6 +33,7 @@ module.exports = function (context) {
 
 
   app.use('/auth', require('./routes/authentication.routes'));
+  app.use('/api', require('./routes/api.routes'));
 
   app.get('/handshake', (req, res) => {
     console.log(req.user);
@@ -42,34 +43,6 @@ module.exports = function (context) {
       res.json(req.user);
     }
   });
-
-  app.post('/api/user/login', (req, res) => {
-    res.send('Login with session');
-  });
-
-  app.route('/api/user/logout')
-  .get(function (req, res) {
-    req.logout();
-    res.status(200).end();
-  })
-  .post(function (req, res) {
-    req.logout();
-    res.status(200).end();
-  })
-
-  app.route('/api/user')
-    .get(function (req, res) {
-      res.send('Get user info by session info')
-    })
-    .post(function (req, res) {
-      res.send('Create user ( No session needed )')
-    })
-    .put(function (req, res) {
-      res.send('Update user info by session info')
-    })
-    .delete(function (req, res) {
-      res.send('remove user by session info')
-    });
 
     return app;
 };
