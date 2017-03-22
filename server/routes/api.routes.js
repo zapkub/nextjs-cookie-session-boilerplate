@@ -5,7 +5,7 @@ const validator = require("email-validator");
 
 router.post('/user/login', passport.authenticate('local'), (req, res) => {
   if (!req.user) {
-    res.status(401).end();
+    res.status(401).json({ error: 'Unauthorized.' }).end();
   } else {
     res.json({ msg: 'Login successful.' }).status(200).end();
   }
@@ -24,7 +24,7 @@ router.route('/user/logout')
 router.route('/user')
   .get(function (req, res) {
     if (!req.user) {
-      res.status(401).end();
+      res.status(401).json({ error: 'Unauthorized.' }).end();
     }
     else {
       delete req.user.password;
@@ -69,11 +69,32 @@ router.route('/user')
     }
   })
   .put(function (req, res) {
-    res.send('Update user info by session info')
+    if (!req.user) {
+      res.status(401).json({ error: 'Unauthorized.' }).end();
+    }
+    else {
+      if(!req.body.firstName && !req.body.lastName) {
+        res.status(400).json({ error: 'Invalid parameter.' }).end();
+      }
+
+      let data_update = {};
+
+      if(req.body.firstName) {
+        data_update.firstName = req.body.firstName;
+      }
+
+      if(req.body.lastName) {
+        data_update.lastName = req.body.lastName;
+      }
+
+      User.model.update({email: req.user.email}, {$set:data_update}, async function() {
+        await res.json({ msg: 'Update user successful.' }).status(200).end();
+      });
+    }
   })
   .delete(function (req, res) {
     if (!req.user) {
-      res.status(401).end();
+      res.status(401).json({ error: 'Unauthorized.' }).end();
     }
     else {
       User.model.remove({email: req.user.email}, async function(err, userResult) {
