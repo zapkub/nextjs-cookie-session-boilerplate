@@ -16,7 +16,7 @@ exports.deserializeSession = context => async function (id, done) {
 
 exports.LocalStrategyHandler = context => async (email, password, done) => {
   console.log('login');
-  const user = await context.User.findOne({ email });
+  const user = await context.User.findOne({ email, password });
   if (user) {
     const isValidPassword = (new context.User()).comparePassword();
     if (isValidPassword) {
@@ -25,7 +25,7 @@ exports.LocalStrategyHandler = context => async (email, password, done) => {
       done(null, user);
     }
   } else {
-    done('Error');
+    done(null, false);
   }
 };
 
@@ -33,4 +33,3 @@ exports.serializeSession = context => (user, done) => {
   console.log('Serialize session');
   done(null, user._id);
 };
-

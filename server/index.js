@@ -33,6 +33,7 @@ module.exports = function (context) {
 
 
   app.use('/auth', require('./routes/authentication.routes'));
+  app.use('/api', require('./routes/api.routes'));
 
   app.get('/handshake', (req, res) => {
     console.log(req.user);
@@ -42,6 +43,6 @@ module.exports = function (context) {
       res.json(req.user);
     }
   });
-  return app;
-};
 
+    return app;
+};

@@ -3,8 +3,6 @@ exports.login = async (req, res) => {
     res.json(req.user);
 }
 
-
-
 exports.register = async (req, res) => {
     const logger = req.context.logger;
     logger.log('Register user');
