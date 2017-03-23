@@ -27,4 +27,3 @@ app.prepare().then(() => {
         logger.log('Start app on 3000');
     });
 })
-
