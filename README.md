@@ -1,6 +1,6 @@
 # nextjs-cookie-session-boilerplate
 
-This is simple authentication with nextjs and passport js
+This is a simple authentication with nextjs and passport js
 
 
 ## Development
@@ -12,3 +12,8 @@ $ npm run dev
 ```
 - Go to `http://localhost:{PORT}/register` to register new user
 - Go to `http://localhost:{PORT}` to Login
+
+## Test
+```
+$ yarn test
+```
