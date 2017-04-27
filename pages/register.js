@@ -1,6 +1,7 @@
 import { compose, withProps, withState } from 'recompose';
 import TextField from 'material-ui/TextField';
 import React from 'react';
+import Router from 'next/router';
 
 import withApp from '../lib/withApp';
 import withAPI from '../lib/withAPI';
@@ -8,11 +9,12 @@ import withAPI from '../lib/withAPI';
 
 const RegisterPage = ({ setEmail, setPassword, email, password, doRegister, startRegister }) => (
   <div>
-    {console.log(startRegister)}
+    <h2>{'Register'}</h2>
     <form
-      className="container" onSubmit={(e) => {
+      className="container" onSubmit={async (e) => {
         e.preventDefault();
-        doRegister(email, password);
+        await doRegister(email, password);
+        Router.push('/');
       }}
     >
       <input
